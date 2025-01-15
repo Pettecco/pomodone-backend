@@ -23,6 +23,11 @@ export class TodoEntity {
 	@UpdateDateColumn({ name: 'updated_at', nullable: true })
 	updatedAt: string | null;
 
-	@Column({ name: 'deleted_at', type: 'timestamp', nullable: true })
-	deletedAt: string | null;
+	@Column({
+		name: 'deleted_at',
+		nullable: true,
+		type: 'timestamp',
+		default: null,
+	})
+	deletedAt: Date | null;
 }

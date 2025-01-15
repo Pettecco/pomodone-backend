@@ -31,8 +31,9 @@ export class TodoService {
 	}
 
 	async deleteById(id: string) {
-		await this.findOneOrFail(id);
-		await this.todoRepository.softDelete(id);
+		const todo = await this.findOneOrFail(id);
+		todo.deletedAt = new Date();
+		return await this.todoRepository.save(todo);
 	}
 
 	async update(id: string, data) {
