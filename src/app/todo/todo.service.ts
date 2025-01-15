@@ -23,7 +23,11 @@ export class TodoService {
 	}
 
 	async create(data) {
-		return await this.todoRepository.save(this.todoRepository.create(data));
+		const todo = this.todoRepository.create({
+			...data,
+			updatedAt: null,
+		});
+		return await this.todoRepository.save(todo);
 	}
 
 	async deleteById(id: string) {
@@ -33,6 +37,7 @@ export class TodoService {
 
 	async update(id: string, data) {
 		const todo = await this.findOneOrFail(id);
+		delete data.updatedAt;
 		const updatedTodo = this.todoRepository.merge(todo, data);
 		return await this.todoRepository.save(updatedTodo);
 	}

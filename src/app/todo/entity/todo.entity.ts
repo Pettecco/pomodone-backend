@@ -20,9 +20,9 @@ export class TodoEntity {
 	@CreateDateColumn({ name: 'created_at' })
 	createdAt: string;
 
-	@UpdateDateColumn({ name: 'updated_at' })
-	updatedAt: string;
+	@UpdateDateColumn({ name: 'updated_at', nullable: true })
+	updatedAt: string | null;
 
-	@UpdateDateColumn({ name: 'deleted_at' })
-	deletedAt: string;
+	@Column({ name: 'deleted_at', type: 'timestamp', nullable: true })
+	deletedAt: string | null;
 }

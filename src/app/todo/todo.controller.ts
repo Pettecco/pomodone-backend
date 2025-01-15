@@ -32,7 +32,6 @@ export class TodoController {
 	}
 
 	@Put(':id')
-	// eslint-disable-next-line prettier/prettier
 	async update(
 		@Param('id', new ParseUUIDPipe()) id: string,
 		@Body() data: any,
