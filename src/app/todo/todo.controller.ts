@@ -39,6 +39,11 @@ export class TodoController {
 		return await this.todoService.update(id, data);
 	}
 
+	@Put(':id/complete')
+	async complete(@Param('id', new ParseUUIDPipe()) id: string) {
+		return await this.todoService.update(id, { isDone: 1 });
+	}
+
 	@Delete(':id')
 	@HttpCode(HttpStatus.NO_CONTENT)
 	async destroy(@Param('id', new ParseUUIDPipe()) id: string) {
