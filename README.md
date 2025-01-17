@@ -18,3 +18,14 @@ Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)
    ```
 
 4. Para acessar a documentação Swagger, abra o navegador e acesse: `http://localhost:{porta}/swagger`
+
+
+### Sugestão para configuração do Banco de Dados:
+
+1. Com o Docker instalado digite:
+
+   ```bash
+   docker run --name pomodone-database -p 3306:3306 -e MARIADB_ROOT_PASSWORD=123 -d mariadb:latest
+   ```
+2. Crie a tabela com o nome `todo` no banco de dados.
+3. O TypeORM irá criar as estruturas.
