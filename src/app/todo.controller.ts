@@ -10,10 +10,11 @@ import {
 	Post,
 	Put,
 } from '@nestjs/common';
+import { TodoService } from './todo.service';
+
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { TodoService } from '../todo.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { CreateTodoDto } from './todo/dto/create-todo.dto';
+import { UpdateTodoDto } from './todo/dto/update-todo.dto';
 
 @Controller('api/v1/todos')
 @ApiTags('todos')
