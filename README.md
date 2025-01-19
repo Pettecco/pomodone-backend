@@ -6,6 +6,8 @@ Este projeto está sendo desenvolvido em **NestJS** para estudos pessoais. Esse 
 
 Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)** como referência.
 
+![print da documentação do swagger](image/swagger.png)
+
 ## Como Rodar o Projeto
 
 1. Clone este repositório.
@@ -14,7 +16,15 @@ Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)
 
    ```bash
    npm install
+   
+   # development
+   npm run start
+
+   # watch mode
    npm run start:dev
+   
+   # production mode
+   npm run start:prod
    ```
 
 4. Para acessar a documentação Swagger, abra o navegador e acesse: `http://localhost:{porta}/swagger`
