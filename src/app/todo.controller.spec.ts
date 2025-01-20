@@ -138,7 +138,7 @@ describe('TodoController', () => {
 		});
 
 		it('should throw an exception', () => {
-			jest.spyOn(todoService, 'deleteById').mockRejectedValue(new Error());
+			jest.spyOn(todoService, 'softDeleteById').mockRejectedValue(new Error());
 
 			expect(todoController.destroy('1')).rejects.toThrow();
 		});
