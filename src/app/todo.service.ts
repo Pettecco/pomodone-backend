@@ -18,11 +18,11 @@ export class TodoService {
 
 	async findAllDeleted() {
 		return await this.todoRepository.find({
-            withDeleted: true,
-            where: {
-                deletedAt: Not(IsNull()),
-            }
-        });
+			withDeleted: true,
+			where: {
+				deletedAt: Not(IsNull()),
+			},
+		});
 	}
 
 	async findOneOrFail(id: string) {
@@ -42,7 +42,7 @@ export class TodoService {
 	}
 
 	async softDeleteById(id: string) {
-        return this.todoRepository.softDelete(id);
+		return this.todoRepository.softDelete(id);
 	}
 
 	async update(id: string, data: UpdateTodoDto) {
