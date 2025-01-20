@@ -39,6 +39,18 @@ export class TodoController {
 		return await this.todoService.findAll();
 	}
 
+	@Get('deleted')
+	@ApiOperation({ summary: 'Listar todas as tarefas deletadas' })
+	@ApiResponse({
+		status: 200,
+		description: 'Lista de tarefas deletadas',
+		type: IndexTodoSwagger,
+		isArray: true,
+	})
+	async getDeleted() {
+		return await this.todoService.findAllDeleted();
+	}
+
 	@Post()
 	@ApiResponse({ status: 201, description: 'Criado', type: CreateTodoSwagger })
 	@ApiResponse({
@@ -101,6 +113,6 @@ export class TodoController {
 	@ApiOperation({ summary: 'Excluir uma tarefa' })
 	@HttpCode(HttpStatus.NO_CONTENT)
 	async destroy(@Param('id', new ParseUUIDPipe()) id: string) {
-		return await this.todoService.deleteById(id);
+		return await this.todoService.softDeleteById(id);
 	}
 }

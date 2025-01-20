@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
 	CreateDateColumn,
+	DeleteDateColumn,
 	Entity,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
@@ -36,6 +37,7 @@ export class TodoEntity {
 		default: null,
 	})
 	@ApiProperty()
+    @DeleteDateColumn()
 	deletedAt: Date | null;
 
 	constructor(todo?: Partial<TodoEntity>) {

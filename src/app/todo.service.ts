@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { TodoEntity } from './todo/entity/todo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateTodoDto } from './todo/dto/create-todo.dto';
@@ -14,6 +14,15 @@ export class TodoService {
 
 	async findAll() {
 		return await this.todoRepository.find();
+	}
+
+	async findAllDeleted() {
+		return await this.todoRepository.find({
+            withDeleted: true,
+            where: {
+                deletedAt: Not(IsNull()),
+            }
+        });
 	}
 
 	async findOneOrFail(id: string) {
@@ -32,10 +41,8 @@ export class TodoService {
 		return await this.todoRepository.save(todo);
 	}
 
-	async deleteById(id: string) {
-		const todo = await this.findOneOrFail(id);
-		todo.deletedAt = new Date();
-		return await this.todoRepository.save(todo);
+	async softDeleteById(id: string) {
+        return this.todoRepository.softDelete(id);
 	}
 
 	async update(id: string, data: UpdateTodoDto) {
