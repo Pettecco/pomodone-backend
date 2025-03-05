@@ -37,5 +37,5 @@ Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)
    ```bash
    docker run --name pomodone-database -p 3306:3306 -e MARIADB_ROOT_PASSWORD=123 -d mariadb:latest
    ```
-2. Crie a tabela com o nome `todo` no banco de dados.
+2. Crie um database com o nome `todo` no banco de dados.
 3. O TypeORM irá criar as estruturas.
