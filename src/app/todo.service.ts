@@ -41,10 +41,14 @@ export class TodoService {
 		return await this.todoRepository.save(todo);
 	}
 
-	async softDeleteById(id: string) {
-		return this.todoRepository.softDelete(id);
+	async softDeleteById(id: string): Promise<any> {
+		try {
+			await this.todoRepository.findOneOrFail({ where: { id } });
+			return await this.todoRepository.softDelete(id);
+		} catch {
+			throw new NotFoundException(`Todo item with id ${id} not found`);
+		}
 	}
-
 	async update(id: string, data: UpdateTodoDto) {
 		const todo = await this.findOneOrFail(id);
 		const updatedTodo = this.todoRepository.merge(todo, data);

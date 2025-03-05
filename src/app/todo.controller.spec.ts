@@ -32,7 +32,7 @@ describe('TodoController', () => {
 						create: jest.fn().mockResolvedValue(newTodoEntity),
 						findOneOrFail: jest.fn().mockResolvedValue(todoEntityList[0]),
 						update: jest.fn().mockResolvedValue(updateTodoEntity),
-						deleteById: jest.fn().mockResolvedValue({ affected: 1 }),
+						softDeleteById: jest.fn().mockResolvedValue({ affected: 1 }),
 					},
 				},
 			],

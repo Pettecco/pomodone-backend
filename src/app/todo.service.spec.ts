@@ -34,6 +34,7 @@ describe('TodoService', () => {
 						create: jest.fn().mockResolvedValue(TodoEntityList[0]),
 						merge: jest.fn().mockResolvedValue(updatedTodoEntity),
 						save: jest.fn().mockResolvedValue(TodoEntityList[0]),
+						softDelete: jest.fn().mockResolvedValue({ affected: 1 }),
 					},
 				},
 			],
@@ -127,25 +128,30 @@ describe('TodoService', () => {
 			expect(todoService.update('1', data)).rejects.toThrow();
 		});
 	});
-
-	describe('deleteById', () => {
+	describe('softDeleteById', () => {
 		it('should delete a todo entity item successfully', async () => {
-			const result = await todoService.deleteById('1');
+			const result = await todoService.softDeleteById('1');
 
-			expect(result).toEqual(TodoEntityList[0]);
+			expect(result).toEqual({ affected: 1 });
 			expect(todoRepository.findOneOrFail).toHaveBeenCalledTimes(1);
+			expect(todoRepository.softDelete).toHaveBeenCalledTimes(1);
+			expect(todoRepository.softDelete).toHaveBeenCalledWith('1');
 		});
 
 		it('should throw a not found exception', () => {
 			jest
 				.spyOn(todoRepository, 'findOneOrFail')
 				.mockRejectedValueOnce(new Error());
-			expect(todoService.deleteById('1')).rejects.toThrow(NotFoundException);
+			expect(todoService.softDeleteById('1')).rejects.toThrow(
+				NotFoundException,
+			);
 		});
 
 		it('should throw an exception', () => {
-			jest.spyOn(todoRepository, 'save').mockRejectedValueOnce(new Error());
-			expect(todoService.deleteById('1')).rejects.toThrow();
+			jest
+				.spyOn(todoRepository, 'softDelete')
+				.mockRejectedValueOnce(new Error());
+			expect(todoService.softDeleteById('1')).rejects.toThrow();
 		});
 	});
 });
