@@ -37,7 +37,7 @@ export class TodoEntity {
 		default: null,
 	})
 	@ApiProperty()
-  @DeleteDateColumn()
+	@DeleteDateColumn()
 	deletedAt: Date | null;
 
 	constructor(todo?: Partial<TodoEntity>) {
