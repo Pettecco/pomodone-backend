@@ -16,19 +16,24 @@ Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)
 
    ```bash
    npm install
-   
+
    # development
    npm run start
 
    # watch mode
    npm run start:dev
-   
+
    # production mode
    npm run start:prod
    ```
 
 4. Para acessar a documentação Swagger, abra o navegador e acesse: `http://localhost:{porta}/swagger`
 
+5. Para executar os testes unitários, execute o seguinte comando:
+
+   ```bash
+   npm run test
+   ```
 
 ### Sugestão para configuração do Banco de Dados:
 
@@ -37,5 +42,6 @@ Estou utilizando o material do **[Leobritob](https://www.youtube.com/@leobritob)
    ```bash
    docker run --name pomodone-database -p 3306:3306 -e MARIADB_ROOT_PASSWORD=123 -d mariadb:latest
    ```
+
 2. Crie um database com o nome `todo` no banco de dados.
 3. O TypeORM irá criar as estruturas.
